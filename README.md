@@ -180,13 +180,10 @@ Simulation allow to dump design and test bench signals into a waveform
 
 Steps for simulation – Run the simulation command with simulator options
 
-## Fig 9: Design Browser window for simulation
-![Screenshot 2025-04-29 103826](https://github.com/user-attachments/assets/60a4600e-6fed-4861-88ce-9c5d583c4a86)
-
-## Fig 10:Simulation Waveform Window
+## Fig 9:Simulation Waveform Window
 ![Screenshot 2025-04-29 103859](https://github.com/user-attachments/assets/6ebb2e78-d2ee-4493-8e0a-e0b86cfe5ff6)
 
-## Fig 11:Simulation Waveform Window
+## Fig 10:Simulation Waveform Window
 ![Screenshot 2025-04-29 103913](https://github.com/user-attachments/assets/1859d0b2-1e91-41c6-a822-c7cc38193a4e)
 
 ### Result
