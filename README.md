@@ -23,6 +23,23 @@ The ALU will take in two 32-bit values, and control line. An Arithmetic unit doe
 Create a folder in your name (Note: Give folder name without any space) and Create a new sub-Directory name it as Exp3 or alu_32bit for the Design and open a terminal from the Sub-Directory.
 
 ## Creating Source Codes 
+ input  [3:0] A, B,
+input  [2:0] ALU_Sel,
+output reg [3:0] ALU_Out,
+output reg CarryOut
+always @(*) begin
+    case (ALU_Sel)
+        3'b000: {CarryOut, ALU_Out} = A + B;
+        3'b001: {CarryOut, ALU_Out} = A - B;
+        3'b010: ALU_Out = A & B;
+        3'b011: ALU_Out = A | B;
+        3'b100: ALU_Out = A ^ B;
+        3'b101: ALU_Out = ~A;
+        3'b110: ALU_Out = A << 1;
+        3'b111: ALU_Out = A >> 1;
+        default: ALU_Out = 4'b0000;
+    endcase
+end
 
 In the Terminal, type gedit <filename>.v (ex: gedit alu_32bit.v). 
 
@@ -39,6 +56,30 @@ A Blank Document opens up into which the following source code can be typed down
 Use Save option or Ctrl+S to save the code or click on the save option from the top most right corner and close the text file.
 
 ## Creating Test bench:
+reg [3:0] A, B;
+reg [2:0] ALU_Sel;
+wire [3:0] ALU_Out;
+wire CarryOut;
+
+ALU uut (
+    .A(A),
+    .B(B),
+    .ALU_Sel(ALU_Sel),
+    .ALU_Out(ALU_Out),
+    .CarryOut(CarryOut)
+);
+
+initial begin
+    A = 4'b0101; B = 4'b0011; ALU_Sel = 3'b000; #10;
+    A = 4'b0101; B = 4'b0011; ALU_Sel = 3'b001; #10;
+    A = 4'b1100; B = 4'b1010; ALU_Sel = 3'b010; #10;
+    A = 4'b1100; B = 4'b1010; ALU_Sel = 3'b011; #10;
+    A = 4'b1100; B = 4'b1010; ALU_Sel = 3'b100; #10;
+    A = 4'b1100; B = 4'b1010; ALU_Sel = 3'b101; #10;
+    A = 4'b0011; B = 4'b0000; ALU_Sel = 3'b110; #10;
+    A = 4'b0011; B = 4'b0000; ALU_Sel = 3'b111; #10;
+    $finish;
+end
 
 Similarly, create your test bench using gedit <filename_tb>.v or <filename_tb>.vhdl to open a new blank document (alu_32bit_tb_case).
 
